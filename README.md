@@ -7,6 +7,11 @@ The benefits of such an approach are:
 2.	Simple and near instant maintainability for the developer.
 3.	For larger projects, the user would be able to make use of high performance distibuted compuitations as well as the storage capabilities of cloud-based hardware.
 
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/JerryGreenough/MeshApp/master/mesh2.jpg" width="700" height="400">  
+</p>
+
 The application front end has been developed using HTML, CSS, JavaScript and the D3 JavaScript library. The back end is a Flask application that has been developed in Python. 
 Geometric computation has been achieved with the ```scipy``` and ```shapely``` python-based libraries. The meshing functionality has been dveloped with the ```gmsh``` library 
 (see https://gmsh.info/ for details).
