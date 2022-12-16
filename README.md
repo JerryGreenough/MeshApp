@@ -7,6 +7,10 @@ The benefits of such an approach are:
 2.	Simple and near instant maintainability for the developer.
 3.	For larger projects, the user would be able to make use of high performance distibuted compuitations as well as the storage capabilities of cloud-based hardware.
 
+The application front end has been developed using HTML, CSS, JavaScript and the D3 JavaScript library. The back end is a Flask application that has been developed in Python. 
+Geometric computation has been achieved with the ```scipy``` and ```shapely``` python-based libraries. The meshing functionality has been dveloped with the ```gmsh``` library 
+(see https://gmsh.info/ for details).
+
 ## Deployment
 
 MeshApp requires that a python script, namely ```flask_app.py``` be run. A version 3.9 (or above) of Python is therefore required.
@@ -24,7 +28,7 @@ Left-click on the graphics area to generate points. Point locations are snapped 
 on the point and entering the required co-ordinates in the dialogue box.
 
 <p>
-Click on the polygon option from the top menu to create a polygon from the points in the graphics area. The outer boundary of the convex hull of the points can be created by ensuring 
+Click on the 'Polygon' option from the top menu to create a polygon from the points in the graphics area. The outer boundary of the convex hull of the points can be created by ensuring 
 the 'Polygon Method' slider from the right hand menu is set to 'Convex Hull' .. otherwise the polygon vertices appear in the order of point creation. 
 Polygons can also be created from selected groups of points. The selection of points is achieved by left clicking on one corner of the selection area and then dragging the cursor
 to the opposite corner. The selected points are then highlighted by concentric circles. Click the 'Polygon' option to create polygons from the selected points.
