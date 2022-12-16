@@ -1,0 +1,37 @@
+
+
+<html>
+    <head>
+        <title>Mesh Output</title>
+    </head>
+	
+	<style>
+	.tbtext {
+		font-family: monospace;
+		font-size: 12px;
+		margin: 0px;
+		margin-left: 5px;
+		position: relative;
+		top: 0px;
+		height: 14px; }
+	
+	</style>
+    <body>
+		
+        {% for mesh in meshes: %}
+		<p class="tbtext" style="font-size: 15px;height: 17px;"><b>Nodes</b></p>
+		{% for ndata in mesh[0]: %}
+        <p class="tbtext">{{ ndata[0] }}   {{ ndata[1] }}   {{ ndata[2] }}</p>
+		{% endfor %}
+		
+		<p class="tbtext" style="font-size: 15px;height: 17px;"><b>Elements</b></p>
+		{% for ndata in mesh[1]: %}
+		{% if ndata|length == 3 %}
+			<p class="tbtext">{{ ndata[0] }}   {{ ndata[1] }}   {{ ndata[2] }}</p>
+		{% else %}	
+			<p class="tbtext">{{ ndata[0] }}   {{ ndata[1] }}   {{ ndata[2] }}    {{ ndata[3] }}</p>
+		{% endif %}
+		{% endfor %}
+		{% endfor %}		
+    </body>
+</html>

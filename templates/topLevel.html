@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>MeshApp</title>
+
+	
+	<link rel="stylesheet" href="{{ url_for('static', filename='topMenu.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='rightMenu.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='slider.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='text.css') }}">
+
+	<style type="text/css">
+	
+		body {
+			background-color: #FFF;
+			margin: 30px;
+			margin-top: 10px;n
+		}
+		#contentContainer {
+			width: 85%;
+			height: 75%;
+			border: 1px black solid;
+			overflow: hidden;
+			background-color: #F2F2F2;
+			cursor: crosshair;
+			position: absolute;
+			border-radius: 3px;
+		}
+	
+	</style>
+
+</head>
+
+ 
+<body>
+
+	<div>
+		<!--- The banner --->
+		<p class="introName"><span style="color:blue">Mesh</span>App</p>
+
+<ul id = "topMenu" class="nav-menu">
+
+ <li class="nav-item" id="ZoomIn">
+   <div>Zoom In</div>
+ </li>
+ 
+ <li class="nav-item" id="ZoomOut">
+   <div>Zoom Out</div>
+ </li>
+ 
+ <li class="nav-item" id="mesh">
+   <div>Mesh</div>
+ </li>
+
+ <li class="nav-item" id="clear">
+   <div>Clear</div>
+ </li>
+
+ <li class="nav-item" id="polygon">
+   <div>Polygon</div>
+ </li>
+ 
+ <li class="nav-item" id="summary">
+   <div>Summary</div>
+ </li>
+
+ <li class="nav-item" id="bezier">
+   <div>Bezier</div>
+ </li>
+ 
+ <li class="nav-item" id="bspline">
+   <div>B-Spline</div>
+ </li>
+
+</ul>
+
+</div>
+
+<div id="contentContainer">	
+</div>
+
+
+<div>
+
+	<p style="position:absolute; top: 60px; left: 89%; font-size: 10px; font-family: Verdana, sans-serif;">--Element Type--</p>
+	
+	<label class="switchElementType" id="toggleElementType" style="position:absolute;visibility:hidden;">
+		<input type="checkbox" id="toggleElementTypeButton">
+		<div class="slider round">
+			<span class="on"  style="position:absolute; left: 35px">Quad</span>
+			<span class="off" style="position:absolute; left: 55px">Tri</span>
+		</div>
+	</label>
+	  
+	<p style="position:absolute; top: 140px; left: 89%; font-size: 10px; font-family: Verdana, sans-serif;">--Polygon Method--</p>
+	
+	<label class="switchPolygonMethod" id="togglePolygonMethod" style="position:absolute;visibility:hidden;">
+		<input type="checkbox" id="togglePolygonMethodButton">
+		<div class="slider round">
+			<span class="on"  style="position:absolute; left: 35px">Convex Hull</span>
+			<span class="off" style="position:absolute; left: 55px">Direct</span>
+		</div>
+	</label>
+	
+	<p style="position:absolute; top: 220px; left: 89%; font-size: 10px; font-family: Verdana, sans-serif;">--Bezier Method--</p>
+	
+	<label class="switchBezierMethod" id="toggleBezierMethod" style="position:absolute;visibility:hidden;">
+		<input type="checkbox" id="toggleBezierMethodButton">
+		<div class="slider round">
+			<span class="on"  style="position:absolute; left: 35px">Ctrl Pnts</span>
+			<span class="off" style="position:absolute; left: 55px">Interp</span>
+		</div>
+	</label>
+	
+	<p style="position:absolute; top: 300px; left: 89%; font-size: 10px; font-family: Verdana, sans-serif;">--Curve Degree--</p>
+	
+	
+	<div style="position:absolute; top: 330px; left: 89%;">
+		<label id="bezierDegree" class="bezierDropDown" style="position:absolute;visibility:hidden;">
+
+		<select name="bezierDegreeOptionList" id="bezierDegreeOptions">
+			<option value="Auto">Auto</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+		</select>
+	
+		</label>
+	
+	</div>
+	
+	<p align="center" style="position:absolute; top: 360px; left: 89%; font-size: 10px; width:90px; font-family: Verdana, sans-serif;">--Knots--</p>
+	
+	<div style="position:absolute; top: 390px; left: 89%;">
+		<label id="knots" class="knotsDropDown" style="position:absolute;visibility:hidden;">
+			<select name="knotsOptionList" id="knotsOptions">
+				<option value="Auto">Auto</option>
+				<option value="User">User</option>
+			</select>	
+		</label>	
+	</div>
+
+	<input type="text" id="knotText" style="position:absolute;top:420px;width:90px;left:89%;visibility:hidden;">
+
+</div>
+
+<script src="./static/js/utilities.js"></script>
+<script src="./static/js/polygon.js"></script>
+<script src="./static/js/mesh.js"></script>
+<script src="./static/js/bezier.js"></script>
+<script src="./static/js/bspline.js"></script>
+<script src="./static/js/draw.js"></script>
+<script src="./static/js/menu.js"></script>
+<script src="./static/js/mouse.js"></script>
+<script src="./static/js/selection.js"></script>
+<script src="./static/js/zoom.js"></script>
+<script src="./static/js/graphics.js"></script>
+<script src="./static/js/pointOperations.js"></script>
+<script src="./static/js/lineOperations.js"></script>
+
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+
+<script>
+
+
+var container = document.querySelector("#contentContainer");
+
+d3.select(container).style("overflow", "scroll");
+
+d3.select(container).on('scroll', scrollFunc);
+
+d3.select(container)
+	.style("width", containerWidth.toString() + "px")
+	.style("height", containerHeight.toString() + "px");
+
+d3.select(window).on('resize', resizefunc);
+d3.select("#clear").on('click', clearFunc);
+d3.select("#mesh").on('click', meshFunc);
+d3.select("#polygon").on('click', polygonFunc);
+d3.select("#bezier").on('click', bezierFunc);
+d3.select("#bspline").on('click', bSplineFunc);
+d3.select("#summary").on('click', summaryfunc);
+d3.select("#ZoomIn").on('click', ZoomInfunc);
+d3.select("#ZoomOut").on('click', ZoomOutfunc);
+d3.select("#knots").on('click', knotsFunc);
+d3.select("#knotText").on('keypress', knotsValuesFunc);
+
+document.addEventListener("keydown", function(event){	
+	if(event.key === "Escape") {
+		removeRightMenus();
+		removeSelectionElements();}
+});
+
+createSVGClient();
+createAxes();
+
+
+// Create the text box.
+
+d3.select('body').append('div', "#contentContainer + *")
+				.attr('id', 'textBox')
+				.attr('class', 'textBox');
+				
+resizeTextBox(wfac);
+resizeTopMenu(wfac);
+repositionSwitch(wfac);
+drawGridLines(origin, gridUnit, gridIncrement, xAxisOffset, yAxisOffset);
+
+d3.select("#toggleElementType").style('visibility', "visible");
+d3.select("#togglePolygonMethod").style('visibility', "visible");
+d3.select("#toggleBezierMethod").style('visibility', "visible");
+d3.select("#bezierDegree").style('visibility', "visible");
+d3.select("#knots").style('visibility', "visible");
+
+
+sessionName = null;
+createSessionNameBox();
+
+textBoxMessage("Mesh Generation App ... {{ version }}.", "blue");
+
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+libglu1-mesa
+libgl1-mesa-glx
+libxcursor-dev
+libxft-dev
+libxinerama-dev
