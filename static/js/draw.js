@@ -305,7 +305,7 @@ function clearDrawingElements(){
 		if(HTMLSurfaces[is]) if(HTMLSurfaces[is][0]) HTMLSurfaces[is][0].forEach(q=>q.remove());
 	}
 		
-	for(let ic = 0; is<HTMLCircles.length; ++ic){
+	for(let ic = 0; ic<HTMLCircles.length; ++ic){
 		if(HTMLCircles[ic]) if(HTMLCircles[ic][0]) HTMLCircles[ic][0].remove();
 	}
 	clearDrawingArrays();
